@@ -38,7 +38,8 @@ LANGS = [
      {name: "phoenix", repo: "phoenixframework/phoenix"},
    ]},
   {lang: "swift", targets: [
-     {name: "http", bin: "server_swift_http"},
+     {name: "zewo", repo: "zewo/zewo"},
+     {name: "http",repo: "server_swift/http"},
      {name: "vapor", repo: "vapor/vapor"},
      {name: "perfect", repo: "PerfectlySoft/Perfect"},
      {name: "kitura", repo: "IBM-Swift/Kitura"},
@@ -144,7 +145,7 @@ def benchmark(server, count) : BenchResult
 
   result = BenchResult.new(max, min, ave, total)
 
-  sleep 3
+  sleep 7
 
   result
 end

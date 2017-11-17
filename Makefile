@@ -109,7 +109,12 @@ rocket:
 	ln -s -f ../rust/rocket/target/release/server_rust_rocket bin/.
 
 # --- Swift ---
-swift: http vapor perfect kitura
+swift: zewo http vapor perfect kitura
+
+# Zewo
+zewo:
+	cd swift/zewo; swift build --configuration release
+	ln -s -f ../swift/zewo/.build/release/server_swift_zewo bin/.
 
 # HTTP
 http:

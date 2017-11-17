@@ -64,6 +64,7 @@ swift                     http                             6.717852        6.031
    - [Perfect](https://www.perfect.org)
    - [Kitura](http://www.kitura.io)
    - [HTTP](https://swift-server.github.io/http/)
+   - [Zewo](https://zewo.github.io/Zewo/)
  - Scala
    - [Akka-Http (Routing DSL)](http://doc.akka.io/docs/akka-http/current/scala/http/introduction.html#routing-dsl-for-http-servers)
  - C#
