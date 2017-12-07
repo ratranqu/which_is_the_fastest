@@ -44,6 +44,9 @@ LANGS = [
      {name: "perfect", repo: "PerfectlySoft/Perfect"},
      {name: "kitura", repo: "IBM-Swift/Kitura"},
    ]},
+  {lang: "xcode", targets: [
+     {name: "xcode", repo: "local/xcode"},
+   ]},
   {lang: "scala", targets: [
      {name: "akkahttp", repo: "akka/akka-http"},
    ]},
@@ -128,20 +131,29 @@ def benchmark(server, count) : BenchResult
   total : Float64 = 0.0
 
   # Running server
-  exec_server = ExecServer.new(server)
+  if server.lang != "xcode"
+    exec_server = ExecServer.new(server)
 
-  # Wait for the binding
-  sleep 10
+    # Wait for the binding
+    sleep 10
 
-  count.times do |i|
-    span = client
-    max = span if span > max
-    min = span if span < min
-    total += span
+    count.times do |i|
+      span = client
+      max = span if span > max
+      min = span if span < min
+      total += span
+    end
+
+    exec_server.kill
+  else
+     count.times do |i|
+      span = client
+      max = span if span > max
+      min = span if span < min
+      total += span
+    end
   end
-
   ave = total/count.to_f
-  exec_server.kill
 
   result = BenchResult.new(max, min, ave, total)
 
@@ -182,7 +194,7 @@ puts_markdown "```", m_lines, true
 puts_markdown "OS: #{`uname -s`.rstrip} (version: #{`uname -r`.rstrip}, arch: #{`uname -m`.rstrip})", m_lines, true
 puts_markdown "CPU Cores: #{System.cpu_count}", m_lines, true
 puts_markdown "```", m_lines, true
-puts_markdown "Bechmark running..."
+puts_markdown "Benchmark running..."
 
 all   = [] of Ranked
 ranks = [] of Ranked
